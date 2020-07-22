@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Listar";
+}
+
+
+<div>
+    <h3>Listar fichero</h3>
+    <form method="post">
+
+        <input type="submit" value="Listar fichero" />
+    </form>
+</div>
+
+
+@{
+    if (IsPost)
+    {
+
+        <h2>Fichero:</h2>
+        IEnumerable<string> lineas = File.ReadAllLines(@"C:\Users\miguellama\source\repos\PruebaInnovationStrategies\PruebaInnovationStrategies\App_Data\200k.txt");
+
+        if (lineas.Any())
+        {
+            foreach (var linea in lineas)
+            {
+                <li>@linea</li>
+            }
+        }
+        else
+        {
+            <p>Fichero vacio</p>
+        }
+    }
+}

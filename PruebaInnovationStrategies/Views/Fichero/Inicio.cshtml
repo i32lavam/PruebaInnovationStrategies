@@ -1,7 +1,102 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Inicio";
 }
+<div>
+    <h3>Buscar(Nombre, Ciudad)</h3>
+    <form method="post">
+        <div>
+            <label for="NameMethod">Introduce el nombre:</label>
+            <input type="text" name="NameMethod" value="" />
+        </div>
+        <div>
+            <label for="CityMethod">Introduce la ciudad:</label>
+            <input type="text" name="CityMethod" value="" />
+        </div>
+        <input type="submit" value="Enviar" />
+    </form>
+</div>
 
-<h2>Inicio</h2>
 
+
+
+@{
+    if (IsPost)
+    {
+        string name = Request.Form["NameMethod"].Trim();
+        string city = Request.Form["CityMethod"].Trim();
+
+        <text>
+            <h2>Datos introducidos:</h2>
+            <br />
+            Nombre: @name
+            <br />
+            Ciudad: @city
+            <br />
+        </text>
+
+
+
+        <h2>RESULTADOS:</h2>
+        IEnumerable<string> lineas = File.ReadAllLines(@"C:\Users\miguellama\source\repos\PruebaInnovationStrategies\PruebaInnovationStrategies\App_Data\200k.txt");
+
+        IEnumerable<string> coincidencias = !String.IsNullOrEmpty(name) ? lineas.Where(linea => linea.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0) : Enumerable.Empty<string>();
+
+        if (!String.IsNullOrEmpty(city))
+        {
+            IEnumerable<string> ejemplo = lineas.Where(linea => linea.IndexOf(city, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            foreach (var linea in lineas)
+            {
+                coincidencias =  coincidencias.Append(linea);
+            }
+        }
+
+
+        if (coincidencias.Any())
+        {
+            foreach (var coincidencia in coincidencias)
+            {
+                <li>@coincidencia</li>
+            }
+        }
+        else
+        {
+            <p>No hay coincidencias</p>;
+        }
+
+
+
+
+
+
+
+
+
+        @*FileStream fichero = new FileStream(@"C:\Users\miguellama\source\repos\PruebaInnovationStrategies\PruebaInnovationStrategies\App_Data\200k.txt", FileMode.Open, FileAccess.Read);
+        StreamReader reader = new StreamReader(fichero);
+        string fila;
+        try
+        {
+            fila = reader.ReadLine();
+            <h3>Resultados</h3>
+            <ul>
+                @{
+                    while (fila != null)
+                    {
+                        if (fila.Contains(name) || fila.Contains(city))
+                        {
+                            <li>@fila</li>
+                        }
+                        fila = reader.ReadLine();
+                    }
+                }
+            </ul>
+        }
+        finally
+        {
+            reader.Close();
+            fichero.Close();
+        }*@
+
+    }
+}

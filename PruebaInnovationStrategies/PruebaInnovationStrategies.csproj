@@ -166,6 +166,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Fichero\Inicio.cshtml" />
     <Content Include="Views\Fichero\VistaParcialResultados.cshtml" />
+    <Content Include="Views\Fichero\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

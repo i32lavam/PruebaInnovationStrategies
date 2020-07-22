@@ -14,6 +14,11 @@ namespace PruebaInnovationStrategies.Controllers
             return View();
         }
 
+        public ActionResult Listar()
+        {
+            return View();
+        }
+
         // GET: Fichero
         //public ActionResult Index()
         //{
